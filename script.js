@@ -2,6 +2,15 @@
  * ARSENIO - Siswa SMK RPL Personal Portfolio
  * Vanilla JavaScript (Interactive features, animations, form validation)
  */
+import {
+  db,
+  doc,
+  collection,
+  onSnapshot,
+  setDoc,
+  deleteDoc,
+  writeBatch
+} from './src/firebase.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
@@ -457,6 +466,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  // ==========================================
+  // 10B. FIREBASE FIRESTORE CLOUD DATABASE INTEGRATION
+  // ==========================================
+  let isFirestoreConnected = false;
+
+  function handleFirestoreError(error, operationType, entityType) {
+    const errorInfo = {
+      code: error?.code || 'unknown',
+      message: error?.message || 'Unknown error occurred',
+      operation: operationType,
+      entity: entityType,
+      timestamp: new Date().toISOString()
+    };
+    console.error(`[Firebase Firestore Error] ${operationType} on ${entityType}:`, errorInfo);
+    return errorInfo;
+  }
+
+  function initFirebaseDatabase() {
+    try {
+      if (db) {
+        isFirestoreConnected = true;
+        updateFirebaseStatusIndicator('online');
+        setupFirestoreRealtimeListeners();
+        console.log('Firebase Firestore modular client successfully active.');
+      } else {
+        updateFirebaseStatusIndicator('offline');
+      }
+    } catch (err) {
+      console.warn('Firebase initialization error, fallback to local cache:', err);
+      updateFirebaseStatusIndicator('offline');
+    }
+  }
+
+  function updateFirebaseStatusIndicator(status) {
+    const badge = document.getElementById('firebase-status-badge');
+    if (badge) {
+      if (status === 'online') {
+        badge.style.background = 'rgba(16, 185, 129, 0.15)';
+        badge.style.color = '#10b981';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        badge.innerHTML = '<i class="fa-solid fa-cloud"></i> <span>Firestore Cloud Connected</span>';
+      } else if (status === 'syncing') {
+        badge.style.background = 'rgba(59, 130, 246, 0.15)';
+        badge.style.color = '#3b82f6';
+        badge.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+        badge.innerHTML = '<i class="fa-solid fa-rotate fa-spin"></i> <span>Syncing Cloud...</span>';
+      } else {
+        badge.style.background = 'rgba(245, 158, 11, 0.15)';
+        badge.style.color = '#f59e0b';
+        badge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+        badge.innerHTML = '<i class="fa-solid fa-hard-drive"></i> <span>Local DB Mode</span>';
+      }
+    }
+  }
+
   // Storage access helpers
   function getProfile() {
     try {
@@ -473,11 +537,26 @@ document.addEventListener('DOMContentLoaded', () => {
     return { ...DEFAULT_PROFILE };
   }
 
-  function saveProfile(profileData) {
+  function saveProfile(profileData, skipCloud = false) {
     try {
       localStorage.setItem('arsenio_profile', JSON.stringify(profileData));
     } catch (e) {
       console.error('Error saving profile to localStorage:', e);
+    }
+
+    if (!skipCloud && db) {
+      updateFirebaseStatusIndicator('syncing');
+      setDoc(doc(db, 'settings', 'profile'), {
+        ...profileData,
+        updatedAt: new Date().toISOString()
+      }, { merge: true })
+        .then(() => {
+          updateFirebaseStatusIndicator('online');
+        })
+        .catch(err => {
+          handleFirestoreError(err, 'WRITE/SET', 'settings/profile');
+          updateFirebaseStatusIndicator('online');
+        });
     }
   }
 
@@ -494,11 +573,38 @@ document.addEventListener('DOMContentLoaded', () => {
     return DEFAULT_PROJECTS;
   }
 
-  function saveProjects(projects) {
+  function saveProjects(projects, skipCloud = false) {
     try {
       localStorage.setItem('arsenio_projects', JSON.stringify(projects));
     } catch (e) {
       console.error('Error saving projects to localStorage:', e);
+    }
+
+    if (!skipCloud && db) {
+      updateFirebaseStatusIndicator('syncing');
+      const batch = writeBatch(db);
+      projects.forEach((proj, idx) => {
+        const docRef = doc(db, 'projects', String(proj.id));
+        batch.set(docRef, {
+          title: proj.title || '',
+          category: proj.category || '',
+          duration: proj.duration || '',
+          img: proj.img || '',
+          desc: proj.desc || '',
+          tags: Array.isArray(proj.tags) ? proj.tags.join(', ') : (proj.tags || ''),
+          role: proj.role || '',
+          github: proj.github || '',
+          order: idx,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      });
+
+      batch.commit()
+        .then(() => updateFirebaseStatusIndicator('online'))
+        .catch(err => {
+          handleFirestoreError(err, 'BATCH_WRITE', 'projects');
+          updateFirebaseStatusIndicator('online');
+        });
     }
   }
 
@@ -515,11 +621,36 @@ document.addEventListener('DOMContentLoaded', () => {
     return DEFAULT_SKILLS;
   }
 
-  function saveSkills(skills) {
+  function saveSkills(skills, skipCloud = false) {
     try {
       localStorage.setItem('arsenio_skills', JSON.stringify(skills));
     } catch (e) {
       console.error('Error saving skills to localStorage:', e);
+    }
+
+    if (!skipCloud && db) {
+      updateFirebaseStatusIndicator('syncing');
+      const batch = writeBatch(db);
+      skills.forEach((sk, idx) => {
+        const docRef = doc(db, 'skills', String(sk.id));
+        batch.set(docRef, {
+          name: sk.name || '',
+          level: sk.level || 'Intermediate',
+          percent: Number(sk.percent) || 75,
+          iconClass: sk.iconClass || 'fa-solid fa-code',
+          iconColorClass: sk.iconColorClass || 'code-icon',
+          desc: sk.desc || '',
+          order: idx,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      });
+
+      batch.commit()
+        .then(() => updateFirebaseStatusIndicator('online'))
+        .catch(err => {
+          handleFirestoreError(err, 'BATCH_WRITE', 'skills');
+          updateFirebaseStatusIndicator('online');
+        });
     }
   }
 
@@ -538,6 +669,157 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       console.error('Error saving inbox messages:', e);
     }
+  }
+
+  function deleteCloudProject(projectId) {
+    if (!db || !projectId) return;
+    deleteDoc(doc(db, 'projects', String(projectId)))
+      .catch(err => handleFirestoreError(err, 'DELETE', `projects/${projectId}`));
+  }
+
+  function deleteCloudSkill(skillId) {
+    if (!db || !skillId) return;
+    deleteDoc(doc(db, 'skills', String(skillId)))
+      .catch(err => handleFirestoreError(err, 'DELETE', `skills/${skillId}`));
+  }
+
+  function saveCloudMessage(messageData) {
+    if (!db) return;
+    const msgId = String(messageData.id || Date.now());
+    setDoc(doc(db, 'messages', msgId), {
+      name: messageData.name || '',
+      email: messageData.email || '',
+      message: messageData.message || '',
+      createdAt: new Date().toISOString()
+    }).catch(err => handleFirestoreError(err, 'WRITE/CREATE', `messages/${msgId}`));
+  }
+
+  function deleteCloudMessage(msgId) {
+    if (!db || !msgId) return;
+    deleteDoc(doc(db, 'messages', String(msgId)))
+      .catch(err => handleFirestoreError(err, 'DELETE', `messages/${msgId}`));
+  }
+
+  // Real-time Firestore Listeners
+  function setupFirestoreRealtimeListeners() {
+    if (!db) return;
+
+    // 1. Profile document listener
+    onSnapshot(doc(db, 'settings', 'profile'), (snapshot) => {
+      if (snapshot.exists()) {
+        const cloudProfile = snapshot.data();
+        if (cloudProfile && cloudProfile.name) {
+          localStorage.setItem('arsenio_profile', JSON.stringify({ ...DEFAULT_PROFILE, ...cloudProfile }));
+          renderProfile();
+          if (document.getElementById('admin-panel-modal')?.classList.contains('active')) {
+            populateProfileForm();
+          }
+        }
+      } else {
+        // First-time seed profile to Firestore
+        const currentLocal = getProfile();
+        setDoc(doc(db, 'settings', 'profile'), {
+          ...currentLocal,
+          updatedAt: new Date().toISOString()
+        }).catch(err => handleFirestoreError(err, 'SEED_PROFILE', 'settings/profile'));
+      }
+    }, err => handleFirestoreError(err, 'LISTEN', 'settings/profile'));
+
+    // 2. Projects collection listener
+    onSnapshot(collection(db, 'projects'), (snapshot) => {
+      if (!snapshot.empty) {
+        const cloudProjects = [];
+        snapshot.forEach(docSnap => {
+          const d = docSnap.data();
+          cloudProjects.push({
+            id: docSnap.id,
+            title: d.title || '',
+            category: d.category || 'Portfolio',
+            duration: d.duration || '',
+            img: d.img || 'assets/project1.jpg',
+            desc: d.desc || '',
+            tags: Array.isArray(d.tags) ? d.tags : (d.tags ? d.tags.split(',').map(t => t.trim()) : []),
+            role: d.role || '',
+            github: d.github || '',
+            order: typeof d.order === 'number' ? d.order : 99
+          });
+        });
+
+        cloudProjects.sort((a, b) => (a.order || 0) - (b.order || 0));
+        localStorage.setItem('arsenio_projects', JSON.stringify(cloudProjects));
+        renderProjects();
+        if (document.getElementById('admin-panel-modal')?.classList.contains('active')) {
+          renderAdminPanelData();
+        }
+      } else {
+        // Seed projects to Firestore
+        const curProj = getProjects();
+        saveProjects(curProj);
+      }
+    }, err => handleFirestoreError(err, 'LISTEN', 'projects'));
+
+    // 3. Skills collection listener
+    onSnapshot(collection(db, 'skills'), (snapshot) => {
+      if (!snapshot.empty) {
+        const cloudSkills = [];
+        snapshot.forEach(docSnap => {
+          const d = docSnap.data();
+          cloudSkills.push({
+            id: docSnap.id,
+            name: d.name || '',
+            level: d.level || 'Intermediate',
+            percent: Number(d.percent) || 75,
+            iconClass: d.iconClass || 'fa-solid fa-code',
+            iconColorClass: d.iconColorClass || 'code-icon',
+            desc: d.desc || '',
+            order: typeof d.order === 'number' ? d.order : 99
+          });
+        });
+
+        cloudSkills.sort((a, b) => (a.order || 0) - (b.order || 0));
+        localStorage.setItem('arsenio_skills', JSON.stringify(cloudSkills));
+        renderSkills();
+        if (document.getElementById('admin-panel-modal')?.classList.contains('active')) {
+          renderAdminPanelData();
+        }
+      } else {
+        // Seed skills to Firestore
+        const curSkills = getSkills();
+        saveSkills(curSkills);
+      }
+    }, err => handleFirestoreError(err, 'LISTEN', 'skills'));
+
+    // 4. Messages listener
+    onSnapshot(collection(db, 'messages'), (snapshot) => {
+      if (!snapshot.empty) {
+        const cloudMsgs = [];
+        snapshot.forEach(docSnap => {
+          const d = docSnap.data();
+          const createdAt = d.createdAt ? new Date(d.createdAt) : new Date();
+          const dateStr = createdAt.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+          cloudMsgs.push({
+            id: docSnap.id,
+            name: d.name || '',
+            email: d.email || '',
+            message: d.message || '',
+            date: dateStr
+          });
+        });
+
+        localStorage.setItem('arsenio_inbox', JSON.stringify(cloudMsgs));
+        const inboxCountEl = document.getElementById('tab-messages-count');
+        if (inboxCountEl) inboxCountEl.textContent = cloudMsgs.length;
+        if (document.getElementById('admin-panel-modal')?.classList.contains('active')) {
+          renderAdminPanelData();
+        }
+      }
+    }, err => handleFirestoreError(err, 'LISTEN', 'messages'));
   }
 
   function getAdminCreds() {
@@ -1080,6 +1362,31 @@ document.addEventListener('DOMContentLoaded', () => {
     panelLogoutBtn.addEventListener('click', handleLogoutConfirmation);
   }
 
+  const firebaseSyncBtn = document.getElementById('firebase-sync-now-btn');
+  if (firebaseSyncBtn) {
+    firebaseSyncBtn.addEventListener('click', () => {
+      updateFirebaseStatusIndicator('syncing');
+      try {
+        saveProfile(getProfile());
+        saveProjects(getProjects());
+        saveSkills(getSkills());
+        if (typeof Swal !== 'undefined') {
+          Swal.fire({
+            title: 'Sinkronisasi Aktif',
+            text: 'Data profil, proyek, dan skill berhasil dikirim ke database Cloud Firestore.',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            background: htmlRoot.classList.contains('dark') ? '#0f172a' : '#ffffff',
+            color: htmlRoot.classList.contains('dark') ? '#f8fafc' : '#0f172a'
+          });
+        }
+      } catch (e) {
+        console.error('Error during manual sync:', e);
+      }
+    });
+  }
+
   // ==========================================
   // 14. ADMIN DASHBOARD PANEL: TABS & DATA LISTS
   // ==========================================
@@ -1281,6 +1588,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = b.getAttribute('data-id');
         const updated = getInbox().filter(m => String(m.id) !== String(id));
         saveInbox(updated);
+        deleteCloudMessage(id);
         renderAdminMessagesList();
         const el = document.getElementById('tab-messages-count');
         if (el) el.textContent = updated.length;
@@ -1309,6 +1617,7 @@ document.addEventListener('DOMContentLoaded', () => {
           color: htmlRoot.classList.contains('dark') ? '#f8fafc' : '#0f172a'
         }).then((res) => {
           if (res.isConfirmed) {
+            inbox.forEach(m => deleteCloudMessage(m.id));
             saveInbox([]);
             renderAdminMessagesList();
             const el = document.getElementById('tab-messages-count');
@@ -1326,6 +1635,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } else {
         if (confirm('Hapus semua pesan masuk?')) {
+          inbox.forEach(m => deleteCloudMessage(m.id));
           saveInbox([]);
           renderAdminMessagesList();
         }
@@ -1514,6 +1824,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }).then((res) => {
         if (res.isConfirmed) {
           const updated = projects.filter(p => p.id !== id);
+          deleteCloudProject(id);
           saveProjects(updated);
           renderProjects();
           renderAdminPanelData();
@@ -1530,6 +1841,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       if (confirm(`Hapus project "${target.title}"?`)) {
+        deleteCloudProject(id);
         saveProjects(projects.filter(p => p.id !== id));
         renderProjects();
         renderAdminPanelData();
@@ -1684,6 +1996,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }).then((res) => {
         if (res.isConfirmed) {
           const updated = skills.filter(s => s.id !== id);
+          deleteCloudSkill(id);
           saveSkills(updated);
           renderSkills();
           renderAdminPanelData();
@@ -1700,6 +2013,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       if (confirm(`Hapus skill "${target.name}"?`)) {
+        deleteCloudSkill(id);
         saveSkills(skills.filter(s => s.id !== id));
         renderSkills();
         renderAdminPanelData();
@@ -2336,14 +2650,16 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           const currentInbox = getInbox();
-          currentInbox.unshift({
+          const newMsg = {
             id: Date.now(),
             name: nameVal,
             email: emailVal,
             message: messageVal,
             date: dateStr
-          });
+          };
+          currentInbox.unshift(newMsg);
           saveInbox(currentInbox);
+          saveCloudMessage(newMsg);
 
           // Update inbox count in Admin Panel
           const inboxCountEl = document.getElementById('tab-messages-count');
@@ -2395,5 +2711,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render of Admin UI & Dynamic Grids
   updateAdminUI();
+
+  // Initialize Firebase Firestore Cloud Database
+  initFirebaseDatabase();
 });
 

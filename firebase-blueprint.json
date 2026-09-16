@@ -1,0 +1,266 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "Informasi profil Arsenio yang tampil pada Hero, About, dan Kontak.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nama lengkap / panggilan.",
+          "maxLength": 100
+        },
+        "school": {
+          "type": "string",
+          "description": "Nama sekolah.",
+          "maxLength": 150
+        },
+        "major": {
+          "type": "string",
+          "description": "Jurusan sekolah.",
+          "maxLength": 150
+        },
+        "grade": {
+          "type": "string",
+          "description": "Tingkat kelas.",
+          "maxLength": 50
+        },
+        "tagText": {
+          "type": "string",
+          "description": "Teks tag badge di hero.",
+          "maxLength": 50
+        },
+        "statusAvail": {
+          "type": "string",
+          "description": "Status ketersediaan.",
+          "maxLength": 100
+        },
+        "headlinePrefix": {
+          "type": "string",
+          "description": "Prefix teks headline.",
+          "maxLength": 100
+        },
+        "typingRoles": {
+          "type": "string",
+          "description": "Daftar kata peran dipisahkan koma untuk animasi ketik.",
+          "maxLength": 300
+        },
+        "heroDesc": {
+          "type": "string",
+          "description": "Deskripsi singkat di section hero.",
+          "maxLength": 600
+        },
+        "avatar": {
+          "type": "string",
+          "description": "URL foto avatar.",
+          "maxLength": 500
+        },
+        "focus": {
+          "type": "string",
+          "description": "Fokus keahlian.",
+          "maxLength": 100
+        },
+        "hobbies": {
+          "type": "string",
+          "description": "Hobi Arsenio.",
+          "maxLength": 100
+        },
+        "location": {
+          "type": "string",
+          "description": "Lokasi domisili.",
+          "maxLength": 150
+        },
+        "storyTitle": {
+          "type": "string",
+          "description": "Judul cerita di About section.",
+          "maxLength": 200
+        },
+        "quote": {
+          "type": "string",
+          "description": "Kutipan atau motto hidup.",
+          "maxLength": 250
+        },
+        "story1": {
+          "type": "string",
+          "description": "Paragraf pertama cerita.",
+          "maxLength": 1200
+        },
+        "story2": {
+          "type": "string",
+          "description": "Paragraf kedua cerita.",
+          "maxLength": 1200
+        },
+        "email": {
+          "type": "string",
+          "description": "Alamat email.",
+          "maxLength": 120
+        },
+        "github": {
+          "type": "string",
+          "description": "Tautan GitHub.",
+          "maxLength": 250
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Tautan Instagram.",
+          "maxLength": 250
+        },
+        "instagramHandle": {
+          "type": "string",
+          "description": "Username Instagram.",
+          "maxLength": 100
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Waktu terakhir pembaruan data ISO string.",
+          "maxLength": 50
+        }
+      },
+      "required": ["name", "school", "major", "grade"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Karya atau project portofolio Arsenio.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Judul proyek.",
+          "maxLength": 150
+        },
+        "category": {
+          "type": "string",
+          "description": "Kategori proyek (IoT, Web Development, Mobile, dll).",
+          "maxLength": 50
+        },
+        "duration": {
+          "type": "string",
+          "description": "Waktu pengerjaan proyek.",
+          "maxLength": 100
+        },
+        "img": {
+          "type": "string",
+          "description": "URL gambar preview proyek.",
+          "maxLength": 500
+        },
+        "desc": {
+          "type": "string",
+          "description": "Deskripsi lengkap proyek.",
+          "maxLength": 2000
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tech stack dipisahkan tanda koma.",
+          "maxLength": 300
+        },
+        "role": {
+          "type": "string",
+          "description": "Peran dalam pengerjaan proyek.",
+          "maxLength": 100
+        },
+        "github": {
+          "type": "string",
+          "description": "Tautan repositori kode GitHub proyek.",
+          "maxLength": 300
+        },
+        "order": {
+          "type": "number",
+          "description": "Urutan tampil proyek."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Waktu pembuatan.",
+          "maxLength": 50
+        }
+      },
+      "required": ["title", "category", "desc"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "Daftar keahlian coding dan tools yang dikuasai.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nama keahlian atau teknologi.",
+          "maxLength": 100
+        },
+        "level": {
+          "type": "string",
+          "description": "Tingkat penguasaan (Beginner, Intermediate, Advanced).",
+          "maxLength": 50
+        },
+        "percent": {
+          "type": "number",
+          "description": "Persentase keahlian 0 - 100."
+        },
+        "iconClass": {
+          "type": "string",
+          "description": "FontAwesome icon class.",
+          "maxLength": 100
+        },
+        "iconColorClass": {
+          "type": "string",
+          "description": "CSS class warna ikon.",
+          "maxLength": 50
+        },
+        "desc": {
+          "type": "string",
+          "description": "Deskripsi ringkas keahlian.",
+          "maxLength": 500
+        },
+        "order": {
+          "type": "number",
+          "description": "Urutan tampil skill."
+        }
+      },
+      "required": ["name", "level", "desc"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Pesan yang dikirimkan oleh pengunjung melalui formulir kontak.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nama pengirim pesan.",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "Email pengirim.",
+          "maxLength": 120
+        },
+        "message": {
+          "type": "string",
+          "description": "Isi pesan kontak.",
+          "maxLength": 3000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Waktu pengiriman pesan.",
+          "maxLength": 50
+        }
+      },
+      "required": ["name", "email", "message"]
+    }
+  },
+  "firestore": {
+    "/settings/profile": {
+      "schema": "Profile",
+      "description": "Dokumen tunggal penyimpan data profil portofolio Arsenio."
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Koleksi proyek portofolio Arsenio."
+    },
+    "/skills/{skillId}": {
+      "schema": "Skill",
+      "description": "Koleksi keahlian pemrograman Arsenio."
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Koleksi pesan masuk dari formulir kontak portofolio."
+    }
+  }
+}

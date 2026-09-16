@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 100 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Profile Document Validation
+    function isValidProfile(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.school is string && data.school.size() > 0 && data.school.size() <= 150
+        && data.major is string && data.major.size() > 0 && data.major.size() <= 150
+        && data.grade is string && data.grade.size() > 0 && data.grade.size() <= 50
+        && (!('heroDesc' in data) || (data.heroDesc is string && data.heroDesc.size() <= 600))
+        && (!('quote' in data) || (data.quote is string && data.quote.size() <= 250))
+        && (!('story1' in data) || (data.story1 is string && data.story1.size() <= 1200))
+        && (!('story2' in data) || (data.story2 is string && data.story2.size() <= 1200));
+    }
+
+    // Project Document Validation
+    function isValidProject(data) {
+      return data.title is string && data.title.size() > 0 && data.title.size() <= 150
+        && data.category is string && data.category.size() > 0 && data.category.size() <= 50
+        && data.desc is string && data.desc.size() > 0 && data.desc.size() <= 2000;
+    }
+
+    // Skill Document Validation
+    function isValidSkill(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.level is string && data.level.size() > 0 && data.level.size() <= 50
+        && data.desc is string && data.desc.size() > 0 && data.desc.size() <= 500;
+    }
+
+    // Contact Message Document Validation
+    function isValidMessage(data) {
+      return data.name is string && data.name.size() >= 2 && data.name.size() <= 100
+        && data.email is string && data.email.size() >= 5 && data.email.size() <= 120
+        && data.message is string && data.message.size() >= 5 && data.message.size() <= 3000;
+    }
+
+    // Public Profile Configuration
+    match /settings/profile {
+      allow read: if true;
+      allow write: if isValidProfile(request.resource.data);
+    }
+
+    // Projects Collection
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create: if isValidId(projectId) && isValidProject(request.resource.data);
+      allow update: if isValidId(projectId) && isValidProject(request.resource.data);
+      allow delete: if isValidId(projectId);
+    }
+
+    // Skills Collection
+    match /skills/{skillId} {
+      allow read: if true;
+      allow create: if isValidId(skillId) && isValidSkill(request.resource.data);
+      allow update: if isValidId(skillId) && isValidSkill(request.resource.data);
+      allow delete: if isValidId(skillId);
+    }
+
+    // Contact Messages Collection (Visitors can send, reads permitted)
+    match /messages/{messageId} {
+      allow read: if true;
+      allow create: if isValidId(messageId) && isValidMessage(request.resource.data);
+      allow update: if false;
+      allow delete: if isValidId(messageId);
+    }
+  }
+}
