@@ -1,0 +1,6 @@
+{
+  "name": "Arsenio Portfolio - Siswa SMK RPL",
+  "description": "Website portofolio pribadi modern untuk Arsenio, siswa SMK Krian 1 Sidoarjo jurusan Rekayasa Perangkat Lunak (RPL).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

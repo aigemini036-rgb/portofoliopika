@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arsenio | Portfolio Siswa SMK RPL & Web Developer</title>
+  <meta name="description" content="Website portofolio pribadi Arsenio, siswa kelas XI Rekayasa Perangkat Lunak (RPL) SMK Krian 1 Sidoarjo. Berfokus pada Web Development, Programming, UI/UX, dan IoT." />
+  <meta name="keywords" content="Arsenio, Portfolio, Siswa RPL, SMK Krian 1 Sidoarjo, Web Developer, IoT, Frontend, PHP, JavaScript" />
+  <meta name="author" content="Arsenio" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arsenio.dev" />
+  <meta property="og:title" content="Arsenio | Portfolio Siswa SMK RPL & Web Developer" />
+  <meta property="og:description" content="Personal portfolio Arsenio - Siswa SMK Krian 1 Sidoarjo jurusan Rekayasa Perangkat Lunak (RPL)." />
+  <meta property="og:image" content="assets/profile.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arsenio | Portfolio Siswa SMK RPL & Web Developer" />
+  <meta name="twitter:description" content="Personal portfolio Arsenio - Siswa SMK Krian 1 Sidoarjo jurusan Rekayasa Perangkat Lunak (RPL)." />
+  <meta name="twitter:image" content="assets/profile.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- SweetAlert2 for Toast notifications -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Page Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-spinner"></div>
+      <div class="preloader-text">
+        <span class="logo-code">&lt;</span>ARSENIO<span class="accent-dot">.</span><span class="logo-code">/&gt;</span>
+      </div>
+      <p class="preloader-sub">Loading Portfolio...</p>
+    </div>
+  </div>
+
+  <!-- Custom Cursor for Desktop -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-outline" id="cursor-outline" aria-hidden="true"></div>
+
+  <!-- Sticky Navbar -->
+  <header class="header" id="header">
+    <nav class="nav-container">
+      <a href="#home" class="logo" id="site-logo" aria-label="Arsenio Portfolio Home">
+        <span class="logo-bracket">&lt;</span>ARSENIO<span class="accent-dot">.</span><span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a href="#journey" class="nav-link">Experience</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Nav Actions (Theme toggle, Admin Auth, & Let's Talk CTA) -->
+      <div class="nav-actions">
+        <!-- Admin Nav Auth Box -->
+        <div id="admin-nav-container" class="admin-nav-box">
+          <button id="admin-login-nav-btn" class="btn btn-sm btn-outline admin-trigger-btn" type="button" aria-label="Login Admin Panel" title="Login Admin Panel">
+            <i class="fa-solid fa-lock"></i>
+            <span class="admin-nav-text">Admin</span>
+          </button>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Ganti mode gelap/terang">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+
+        <a href="#contact" class="btn btn-sm btn-primary nav-cta" id="nav-lets-talk-btn">
+          <span>Let's Talk</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <!-- Hamburger Button for Mobile -->
+        <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigasi menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content">
+    
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-bg-glow glow-1" aria-hidden="true"></div>
+      <div class="hero-bg-glow glow-2" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <!-- Hero Text -->
+        <div class="hero-content reveal-on-scroll">
+          <div class="hero-tag">
+            <span class="pulse-dot"></span>
+            <span class="tag-text" id="hero-tag-text">HELLO, I'M</span>
+          </div>
+
+          <h1 class="hero-name" id="hero-name">
+            Arsenio<span class="accent-dot">.</span>
+          </h1>
+
+          <div class="typing-container">
+            <h2 class="hero-headline">
+              <span class="static-prefix" id="hero-static-prefix">RPL Student &amp; </span>
+              <span class="typing-text" id="typing-text">Web Developer</span>
+              <span class="typing-cursor">|</span>
+            </h2>
+          </div>
+
+          <p class="hero-description" id="hero-desc-text">
+            Saya seorang siswa Rekayasa Perangkat Lunak yang tertarik pada web development, programming, dan teknologi. Saya terus belajar dan membuat berbagai project untuk mengembangkan kemampuan saya.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary ripple-btn" id="hero-projects-btn">
+              <span>View My Projects</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="#contact" class="btn btn-secondary ripple-btn" id="hero-contact-btn">
+              <span>Contact Me</span>
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+
+          <!-- Hero Admin Quick Bar (Visible only when logged in) -->
+          <div id="hero-admin-actions" class="section-admin-bar" style="display: none; margin-top: 1rem;">
+            <button type="button" class="btn btn-sm btn-outline open-profile-tab-btn" title="Edit Biodata & Informasi Arsenio">
+              <i class="fa-solid fa-user-pen"></i>
+              <span>Edit Profil Arsenio</span>
+            </button>
+          </div>
+
+          <!-- Hero Social Links -->
+          <div class="hero-social">
+            <span class="social-label">Connect:</span>
+            <div class="social-icons">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" id="hero-instagram-link" aria-label="Instagram Arsenio" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" id="hero-github-link" aria-label="GitHub Arsenio" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="mailto:arsenio.rpl@gmail.com" class="social-btn" id="hero-email-link" aria-label="Email Arsenio" title="Email">
+                <i class="fa-regular fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Graphic: Futuristic IDE / Dev Mockup -->
+        <div class="hero-visual reveal-on-scroll delay-1">
+          <div class="code-terminal-card" id="code-terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-title">
+                <i class="fa-solid fa-code"></i> developer_arsenio.ts
+              </div>
+              <div class="terminal-actions">
+                <span class="badge-mini" id="term-badge-mini">SMK RPL</span>
+              </div>
+            </div>
+
+            <div class="terminal-body">
+              <pre><code><span class="code-comment">// Siswa SMK Krian 1 Sidoarjo</span>
+<span class="code-keyword">const</span> <span class="code-variable">arsenio</span> = {
+  <span class="code-prop">role</span>: <span class="code-string" id="term-code-role">"RPL Student"</span>,
+  <span class="code-prop">school</span>: <span class="code-string" id="term-code-school">"SMK Krian 1 Sidoarjo"</span>,
+  <span class="code-prop">class</span>: <span class="code-string" id="term-code-class">"XI RPL"</span>,
+  <span class="code-prop">interests</span>: [<span class="code-string">"Web Dev"</span>, <span class="code-string">"IoT"</span>, <span class="code-string">"UI/UX"</span>],
+  <span class="code-prop">hobbies</span>: [<span class="code-string" id="term-code-hobbies">"Gaming 🎮, Swimming 🏊‍♂️"</span>],
+  <span class="code-prop">status</span>: <span class="code-string">"Always Learning &amp; Coding"</span>
+};
+
+<span class="code-keyword">function</span> <span class="code-func">exploreTech</span>() {
+  <span class="code-keyword">return</span> <span class="code-string" id="term-code-quote">"Belajar, membuat, mencoba, dan terus berkembang."</span>;
+}</code></pre>
+            </div>
+
+            <!-- Floating Tech Chips -->
+            <div class="floating-chip chip-1">
+              <i class="fa-brands fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="floating-chip chip-2">
+              <i class="fa-brands fa-php"></i>
+              <span>PHP &amp; MySQL</span>
+            </div>
+            <div class="floating-chip chip-3">
+              <i class="fa-solid fa-microchip"></i>
+              <span>ESP32 IoT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT ME SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">BIODATA &amp; STORY</span>
+          <h2 class="section-title">About Me<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+          <!-- Admin Controls for Profile (Visible only when logged in) -->
+          <div id="about-admin-actions" class="section-admin-bar" style="display: none; margin-top: 1rem;">
+            <button type="button" class="btn btn-sm btn-primary open-profile-tab-btn" title="Buka form edit profil">
+              <i class="fa-solid fa-user-pen"></i>
+              <span>Edit Profil &amp; Biodata</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary open-admin-panel-btn">
+              <i class="fa-solid fa-table-columns"></i>
+              <span>Buka Panel Dashboard</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left Column: Profile Card -->
+          <div class="about-left reveal-on-scroll">
+            <div class="profile-card" id="profile-card">
+              <div class="profile-image-wrapper">
+                <img src="assets/profile.jpg" alt="Foto Arsenio Siswa SMK RPL" class="profile-img" id="profile-photo" loading="lazy" />
+                <div class="profile-badge-status">
+                  <span class="status-indicator"></span>
+                  <span id="about-status-text">Open for Projects &amp; PKL</span>
+                </div>
+              </div>
+
+              <div class="profile-info-mini">
+                <h3 class="profile-name" id="about-profile-name">Arsenio</h3>
+                <p class="profile-role" id="about-profile-role">Kelas XI RPL • SMK Krian 1 Sidoarjo</p>
+                <div class="profile-chips" id="about-profile-chips">
+                  <span class="badge" id="about-chip-focus"><i class="fa-solid fa-laptop-code"></i> Web Dev</span>
+                  <span class="badge" id="about-chip-hobby1"><i class="fa-solid fa-gamepad"></i> Gamer</span>
+                  <span class="badge" id="about-chip-hobby2"><i class="fa-solid fa-person-swimming"></i> Swimmer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Story & Natural Info -->
+          <div class="about-right reveal-on-scroll delay-1">
+            <div class="story-wrapper">
+              <h3 class="story-title" id="about-story-title">
+                Halo! Saya Arsenio, Siswa RPL yang Menyukai Dunia Web &amp; Kreativitas Digital.
+              </h3>
+              <p class="story-paragraph" id="about-story-p1">
+                Saya saat ini menempuh pendidikan di <strong>SMK Krian 1 Sidoarjo</strong> pada jurusan <strong>Rekayasa Perangkat Lunak (RPL)</strong>, duduk di bangku kelas <strong>XI RPL</strong>. Ketertarikan saya pada dunia komputer berawal dari rasa ingin tahu bagaimana sebuah website dan sistem interaktif dibuat dari baris-baris kode.
+              </p>
+              <p class="story-paragraph" id="about-story-p2">
+                Melalui kurikulum kejuruan dan eksplorasi mandiri, saya mulai memahami logika pemrograman, pembuatan layout web yang rapi, hingga integrasi database dan mikrokontroler IoT seperti ESP32. Di luar rutinitas belajar dan coding, saya menikmati waktu luang dengan bermain game untuk melatih strategi serta berenang untuk menjaga kebugaran tubuh.
+              </p>
+
+              <!-- Student Bio Info Grid -->
+              <div class="bio-info-grid">
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-regular fa-user"></i> Nama Lengkap</span>
+                  <span class="bio-val" id="about-bio-name">Arsenio</span>
+                </div>
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-solid fa-school"></i> Sekolah</span>
+                  <span class="bio-val" id="about-bio-school">SMK Krian 1 Sidoarjo</span>
+                </div>
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-solid fa-code-branch"></i> Jurusan</span>
+                  <span class="bio-val" id="about-bio-major">Rekayasa Perangkat Lunak</span>
+                </div>
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-solid fa-graduation-cap"></i> Kelas</span>
+                  <span class="bio-val" id="about-bio-grade">XI RPL</span>
+                </div>
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-solid fa-crosshairs"></i> Fokus Utama</span>
+                  <span class="bio-val" id="about-bio-focus">Web Development &amp; UI/UX</span>
+                </div>
+                <div class="bio-item">
+                  <span class="bio-label"><i class="fa-solid fa-heart"></i> Hobi</span>
+                  <span class="bio-val" id="about-bio-hobbies">Gaming &amp; Swimming</span>
+                </div>
+              </div>
+
+              <!-- Quote Card -->
+              <blockquote class="student-quote" id="student-quote">
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <p class="quote-text" id="about-quote-text">“Belajar, membuat, mencoba, dan terus berkembang.”</p>
+                <cite class="quote-author" id="about-quote-author">— Arsenio</cite>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SERVICES / WHAT I DO SECTION -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">CAPABILITIES</span>
+          <h2 class="section-title">What I Do<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1: Web Development -->
+          <div class="service-card reveal-on-scroll" id="service-web">
+            <div class="service-icon-box cyan">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3 class="service-name">Web Development</h3>
+            <p class="service-desc">
+              Membangun website responsive dengan HTML, CSS, JavaScript dan PHP. Memperhatikan struktur kode yang bersih dan kemudahan navigasi bagi pengunjung.
+            </p>
+            <div class="service-footer">
+              <span class="service-tag">HTML • CSS • JS • PHP</span>
+            </div>
+          </div>
+
+          <!-- Card 2: UI/UX Design -->
+          <div class="service-card reveal-on-scroll delay-1" id="service-uiux">
+            <div class="service-icon-box purple">
+              <i class="fa-solid fa-pen-ruler"></i>
+            </div>
+            <h3 class="service-name">UI/UX Design</h3>
+            <p class="service-desc">
+              Membuat rancangan interface yang sederhana, modern, dan mudah digunakan. Mengutamakan estetika visual yang rapi serta kenyamanan pengguna saat berinteraksi.
+            </p>
+            <div class="service-footer">
+              <span class="service-tag">Wireframing • Prototyping</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Database -->
+          <div class="service-card reveal-on-scroll delay-2" id="service-db">
+            <div class="service-icon-box blue">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <h3 class="service-name">Database</h3>
+            <p class="service-desc">
+              Mengelola database dan membuat sistem CRUD untuk aplikasi. Merancang struktur tabel relasional dengan MySQL untuk menyimpan dan memproses data aplikasi secara teratur.
+            </p>
+            <div class="service-footer">
+              <span class="service-tag">MySQL • CRUD Logic</span>
+            </div>
+          </div>
+
+          <!-- Card 4: IoT Project -->
+          <div class="service-card reveal-on-scroll delay-3" id="service-iot">
+            <div class="service-icon-box amber">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <h3 class="service-name">IoT Project</h3>
+            <p class="service-desc">
+              Mengembangkan prototype IoT menggunakan ESP32 dan berbagai sensor. Menggabungkan hardware elektronik dengan antarmuka web untuk pemantauan atau kendali otomatis.
+            </p>
+            <div class="service-footer">
+              <span class="service-tag">ESP32 • Sensor • Hardware</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SKILLS SECTION -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">KEMAMPUAN TEKNIS</span>
+          <h2 class="section-title">My Skills<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Keterampilan yang terus saya pelajari dan asah melalui tugas sekolah, praktek lab, serta project mandiri.
+          </p>
+          <!-- Admin Controls for Skills (Visible only when logged in) -->
+          <div id="skills-admin-actions" class="section-admin-bar" style="display: none;">
+            <button type="button" class="btn btn-sm btn-primary" id="add-skill-page-btn">
+              <i class="fa-solid fa-circle-plus"></i>
+              <span>Tambah Skill Baru</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary open-admin-panel-btn">
+              <i class="fa-solid fa-table-columns"></i>
+              <span>Buka Panel Kelola</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Skill 1: HTML -->
+          <div class="skill-card reveal-on-scroll" id="skill-html">
+            <div class="skill-head">
+              <div class="skill-icon html-icon">
+                <i class="fa-brands fa-html5"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">HTML</h3>
+            <p class="skill-desc">
+              Mampu menyusun struktur semantik dokumen web standar yang ramah SEO dan mudah diakses.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 2: CSS -->
+          <div class="skill-card reveal-on-scroll delay-1" id="skill-css">
+            <div class="skill-head">
+              <div class="skill-icon css-icon">
+                <i class="fa-brands fa-css3-alt"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">CSS</h3>
+            <p class="skill-desc">
+              Membuat styling modern, layout Flexbox &amp; CSS Grid, animasi halus, serta adaptasi tema gelap.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 3: JavaScript -->
+          <div class="skill-card reveal-on-scroll delay-2" id="skill-js">
+            <div class="skill-head">
+              <div class="skill-icon js-icon">
+                <i class="fa-brands fa-js"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">JavaScript</h3>
+            <p class="skill-desc">
+              Manipulasi DOM interaktif, event listeners, logika dasar algoritma, serta komunikasi data asynchronous.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 4: PHP -->
+          <div class="skill-card reveal-on-scroll delay-3" id="skill-php">
+            <div class="skill-head">
+              <div class="skill-icon php-icon">
+                <i class="fa-brands fa-php"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">PHP</h3>
+            <p class="skill-desc">
+              Pembuatan backend sederhana, pengolahan form input, penanganan session, dan sistem logika CRUD.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 5: MySQL -->
+          <div class="skill-card reveal-on-scroll" id="skill-mysql">
+            <div class="skill-head">
+              <div class="skill-icon mysql-icon">
+                <i class="fa-solid fa-database"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">MySQL</h3>
+            <p class="skill-desc">
+              Perancangan tabel relasional, penulisan query dasar SELECT, INSERT, UPDATE, DELETE, dan relasi tabel.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 6: Git -->
+          <div class="skill-card reveal-on-scroll delay-1" id="skill-git">
+            <div class="skill-head">
+              <div class="skill-icon git-icon">
+                <i class="fa-brands fa-git-alt"></i>
+              </div>
+              <span class="skill-level beginner">Beginner</span>
+            </div>
+            <h3 class="skill-name">Git</h3>
+            <p class="skill-desc">
+              Version control dasar untuk menyimpan history perubahan kode, commit, push, dan manajemen repository GitHub.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar beginner-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 7: UI/UX -->
+          <div class="skill-card reveal-on-scroll delay-2" id="skill-uiux">
+            <div class="skill-head">
+              <div class="skill-icon uiux-icon">
+                <i class="fa-solid fa-palette"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">UI/UX</h3>
+            <p class="skill-desc">
+              Pemahaman hirarki visual, konsistensi warna, tipografi, dan perancangan antarmuka pengguna yang nyaman.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+
+          <!-- Skill 8: Responsive Web Design -->
+          <div class="skill-card reveal-on-scroll delay-3" id="skill-responsive">
+            <div class="skill-head">
+              <div class="skill-icon rwd-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-name">Responsive Web Design</h3>
+            <p class="skill-desc">
+              Memastikan tampilan website optimal dan proporsional di berbagai ukuran layar: HP, tablet, laptop, dan desktop.
+            </p>
+            <div class="skill-track">
+              <div class="skill-bar intermediate-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROJECTS SECTION -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">PORTOFOLIO KARYA</span>
+          <h2 class="section-title">Featured Projects<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Project sekolah dan eksplorasi mandiri yang menggabungkan web development, database, dan teknologi IoT.
+          </p>
+          <!-- Admin Controls for Projects (Visible only when logged in) -->
+          <div id="projects-admin-actions" class="section-admin-bar" style="display: none;">
+            <button type="button" class="btn btn-sm btn-primary" id="add-project-page-btn">
+              <i class="fa-solid fa-circle-plus"></i>
+              <span>Tambah Project Baru</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary open-admin-panel-btn">
+              <i class="fa-solid fa-table-columns"></i>
+              <span>Buka Panel Kelola</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project 1: Smart Trash Bin -->
+          <article class="project-card reveal-on-scroll" id="project-trash-bin">
+            <div class="project-image-container">
+              <img src="assets/project1.jpg" alt="Smart Trash Bin IoT Project" class="project-img" loading="lazy" />
+              <div class="project-badge-type">IoT &amp; Hardware</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Smart Trash Bin</h3>
+              <p class="project-desc">
+                Project IoT berbasis ESP32 dengan sensor untuk mendeteksi jenis sampah dan mengontrol sistem tempat sampah secara otomatis.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">ESP32</span>
+                <span class="tech-badge">Sensor</span>
+                <span class="tech-badge">Servo</span>
+                <span class="tech-badge">Website</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-sm btn-primary project-modal-trigger" data-project="1" aria-label="Lihat detail project Smart Trash Bin">
+                  <i class="fa-regular fa-eye"></i>
+                  <span>View Project</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline source-code-btn" data-code="1" aria-label="Lihat source code Smart Trash Bin">
+                  <i class="fa-brands fa-github"></i>
+                  <span>Source Code</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Smart Door Lock -->
+          <article class="project-card reveal-on-scroll delay-1" id="project-door-lock">
+            <div class="project-image-container">
+              <img src="assets/project2.jpg" alt="Smart Door Lock RFID Project" class="project-img" loading="lazy" />
+              <div class="project-badge-type">IoT Security</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Smart Door Lock</h3>
+              <p class="project-desc">
+                Prototype sistem kunci pintu pintar menggunakan RFID yang dapat diintegrasikan dengan sistem web untuk pemantauan akses.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">ESP32/Arduino</span>
+                <span class="tech-badge">RFID</span>
+                <span class="tech-badge">Web</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-sm btn-primary project-modal-trigger" data-project="2" aria-label="Lihat detail project Smart Door Lock">
+                  <i class="fa-regular fa-eye"></i>
+                  <span>View Project</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline source-code-btn" data-code="2" aria-label="Lihat source code Smart Door Lock">
+                  <i class="fa-brands fa-github"></i>
+                  <span>Source Code</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Website Top Up -->
+          <article class="project-card reveal-on-scroll delay-2" id="project-top-up">
+            <div class="project-image-container">
+              <img src="assets/project3.jpg" alt="Website Top Up Game Project" class="project-img" loading="lazy" />
+              <div class="project-badge-type">Web Application</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Website Top Up</h3>
+              <p class="project-desc">
+                Website toko top up game dengan tampilan modern dan sistem pengelolaan data transaksi voucher serta mata uang game.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">PHP</span>
+                <span class="tech-badge">MySQL</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-sm btn-primary project-modal-trigger" data-project="3" aria-label="Lihat detail project Website Top Up">
+                  <i class="fa-regular fa-eye"></i>
+                  <span>View Project</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline source-code-btn" data-code="3" aria-label="Lihat source code Website Top Up">
+                  <i class="fa-brands fa-github"></i>
+                  <span>Source Code</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: SchoolHub -->
+          <article class="project-card reveal-on-scroll delay-3" id="project-school-hub">
+            <div class="project-image-container">
+              <img src="assets/project4.jpg" alt="SchoolHub School Portal Project" class="project-img" loading="lazy" />
+              <div class="project-badge-type">School System</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">SchoolHub</h3>
+              <p class="project-desc">
+                Konsep website informasi sekolah dengan dashboard admin dan sistem pengelolaan data siswa, pengumuman, serta agenda.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">PHP</span>
+                <span class="tech-badge">Database</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-sm btn-primary project-modal-trigger" data-project="4" aria-label="Lihat detail project SchoolHub">
+                  <i class="fa-regular fa-eye"></i>
+                  <span>View Project</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline source-code-btn" data-code="4" aria-label="Lihat source code SchoolHub">
+                  <i class="fa-brands fa-github"></i>
+                  <span>Source Code</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. EXPERIENCE / JOURNEY & EDUCATION SECTION -->
+    <section class="section journey-section" id="journey">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">PERJALANAN &amp; PENDIDIKAN</span>
+          <h2 class="section-title">My Journey<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="journey-education-grid">
+          <!-- Left: Timeline Journey -->
+          <div class="timeline-column reveal-on-scroll">
+            <h3 class="column-heading">
+              <i class="fa-solid fa-route accent-icon"></i> Timeline Belajar
+            </h3>
+            
+            <div class="timeline-wrapper">
+              <!-- Item 1: 2024 -->
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <span class="timeline-year">2024</span>
+                </div>
+                <div class="timeline-card">
+                  <h4 class="timeline-title">Started Learning Programming</h4>
+                  <p class="timeline-desc">
+                    Mulai mengenal dunia programming dan web development saat awal masuk jurusan RPL di SMK Krian 1 Sidoarjo. Mempelajari logika dasar, algoritma, serta struktur HTML dan CSS.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2: 2025 -->
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <span class="timeline-year">2025</span>
+                </div>
+                <div class="timeline-card">
+                  <h4 class="timeline-title">Developing School Projects</h4>
+                  <p class="timeline-desc">
+                    Mulai membuat berbagai project website dan aplikasi untuk tugas sekolah. Mempelajari JavaScript interaktif, pemrograman PHP server-side, serta perancangan database relasional MySQL.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3: 2026 -->
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <span class="timeline-year">2026</span>
+                </div>
+                <div class="timeline-card current">
+                  <span class="badge-now">Saat Ini</span>
+                  <h4 class="timeline-title">Building Real Projects</h4>
+                  <p class="timeline-desc">
+                    Mengembangkan project yang lebih kompleks seperti IoT (ESP32 &amp; RFID), website toko digital, database terintegrasi, serta memperdalam desain antarmuka pengguna (UI/UX).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Education Card & Philosophy -->
+          <div class="education-column reveal-on-scroll delay-1">
+            <h3 class="column-heading">
+              <i class="fa-solid fa-graduation-cap accent-icon"></i> Education
+            </h3>
+
+            <!-- Main School Card -->
+            <div class="education-card" id="education-card">
+              <div class="edu-header">
+                <div class="edu-icon">
+                  <i class="fa-solid fa-school"></i>
+                </div>
+                <div>
+                  <h4 class="edu-school">SMK Krian 1 Sidoarjo</h4>
+                  <p class="edu-major">Rekayasa Perangkat Lunak (RPL)</p>
+                  <span class="edu-period"><i class="fa-regular fa-calendar"></i> 2024 — Sekarang</span>
+                </div>
+              </div>
+
+              <div class="edu-body">
+                <p class="edu-text">
+                  Fokus pada pembelajaran kompetensi keahlian software engineering, mencakup pemodelan perangkat lunak, basis data, pemrograman web dan perangkat bergerak, serta implementasi project terpadu.
+                </p>
+                <div class="edu-badges">
+                  <span class="badge"><i class="fa-solid fa-check"></i> Kurikulum Vokasi</span>
+                  <span class="badge"><i class="fa-solid fa-check"></i> Lab Komputer RPL</span>
+                  <span class="badge"><i class="fa-solid fa-check"></i> Project-Based Learning</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student Mindset Card -->
+            <div class="student-mindset-card">
+              <div class="mindset-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+              </div>
+              <div>
+                <h4 class="mindset-title">Fokus &amp; Komitmen</h4>
+                <p class="mindset-text">
+                  Sebagai siswa SMK, saya percaya keterampilan nyata dibangun lewat eksperimen langsung. Setiap kendala error adalah kesempatan untuk memahami cara kerja sistem secara lebih mendalam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-subtitle">HUBUNGI SAYA</span>
+          <h2 class="section-title">Let's Work Together<span class="accent-dot">.</span></h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Have a project or idea? Feel free to contact me. Saya senang berdiskusi tentang web development, project IoT, atau kolaborasi tugas sekolah.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Contact Details -->
+          <div class="contact-info-col reveal-on-scroll">
+            <h3 class="contact-info-title">Mari Terhubung!</h3>
+            <p class="contact-info-desc">
+              Silakan hubungi saya melalui form atau saluran media sosial di bawah ini. Saya akan berusaha membalas secepat mungkin.
+            </p>
+
+            <div class="contact-methods">
+              <a href="mailto:arsenio.rpl@gmail.com" class="contact-method-card" id="contact-email-card">
+                <div class="method-icon email">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                  <span class="method-title">Email</span>
+                  <span class="method-val" id="contact-email-val">arsenio.rpl@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-method-card" id="contact-github-card">
+                <div class="method-icon github">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                  <span class="method-title">GitHub</span>
+                  <span class="method-val" id="contact-github-val">github.com/arsenio-rpl</span>
+                </div>
+              </a>
+
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-method-card" id="contact-instagram-card">
+                <div class="method-icon instagram">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div>
+                  <span class="method-title">Instagram</span>
+                  <span class="method-val" id="contact-instagram-val">@arsenio.rpl</span>
+                </div>
+              </a>
+
+              <div class="contact-method-card no-link" id="contact-location-card">
+                <div class="method-icon location">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <span class="method-title">Lokasi</span>
+                  <span class="method-val" id="contact-location-val">Sidoarjo, Jawa Timur, Indonesia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="contact-form-col reveal-on-scroll delay-1">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="user_name" class="form-label">
+                  Nama Anda <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-user input-icon"></i>
+                  <input type="text" id="user_name" name="name" class="form-input" placeholder="Masukkan nama lengkap Anda" required />
+                </div>
+                <span class="error-msg" id="name-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="user_email" class="form-label">
+                  Email Anda <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-envelope input-icon"></i>
+                  <input type="email" id="user_email" name="email" class="form-input" placeholder="nama@email.com" required />
+                </div>
+                <span class="error-msg" id="email-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="user_message" class="form-label">
+                  Pesan <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper textarea-wrapper">
+                  <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
+                  <textarea id="user_message" name="message" class="form-textarea" rows="4" placeholder="Ceritakan project, ide, atau pertanyaan Anda..." required></textarea>
+                </div>
+                <span class="error-msg" id="message-error"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block ripple-btn" id="contact-submit-btn">
+                <span>Send Message</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>ARSENIO<span class="accent-dot">.</span><span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">
+          RPL Student • Web Development • Technology
+        </p>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram Arsenio">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub Arsenio">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:arsenio.rpl@gmail.com" class="footer-social-link" aria-label="Email Arsenio">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright-text">
+        &copy; 2026 Arsenio. All rights reserved. • SMK Krian 1 Sidoarjo
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back To Top Button -->
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Kembali ke atas halaman">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- Interactive Project Detail Modal -->
+  <div id="project-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close-btn" aria-label="Tutup modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-img-wrap">
+        <img id="modal-project-img" src="" alt="Detail Project" />
+      </div>
+      <div class="modal-details">
+        <div class="modal-tags" id="modal-project-tags"></div>
+        <h3 class="modal-title" id="modal-project-title">Project Title</h3>
+        <p class="modal-desc" id="modal-project-desc">Project Description</p>
+        <div class="modal-meta" id="modal-project-meta"></div>
+        <div class="modal-buttons">
+          <button type="button" class="btn btn-sm btn-primary" id="modal-demo-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo Preview
+          </button>
+          <button type="button" class="btn btn-sm btn-outline" id="modal-code-btn">
+            <i class="fa-brands fa-github"></i> Repository
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 1: Admin Login Modal -->
+  <div id="admin-login-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box modal-box-sm">
+      <button class="modal-close" id="admin-login-close-btn" aria-label="Tutup modal login">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-form-header">
+        <div class="modal-header-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="modal-form-title">Autentikasi Admin</h3>
+        <p class="modal-form-subtitle">Masuk untuk mengelola, menambah, mengedit, dan menghapus data portofolio Arsenio.</p>
+      </div>
+
+      <div class="admin-hint-card">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>
+          <span>Akses Login Default:</span>
+          <strong>User: <code>arsenio</code> | Pass: <code>arsenio123</code></strong>
+        </div>
+      </div>
+
+      <form id="admin-login-form" class="modal-body-form" novalidate>
+        <div class="form-group">
+          <label for="admin-username" class="form-label">Username</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user-gear input-icon"></i>
+            <input type="text" id="admin-username" class="form-input" placeholder="Masukkan username" autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-key input-icon"></i>
+            <input type="password" id="admin-password" class="form-input" placeholder="Masukkan password" autocomplete="current-password" required />
+            <button type="button" class="password-toggle-btn" id="toggle-admin-password" title="Lihat password" aria-label="Lihat password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <span class="error-msg" id="admin-login-error"></span>
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="admin-login-cancel-btn">Batal</button>
+          <button type="submit" class="btn btn-primary" id="admin-login-submit-btn">
+            <span>Masuk ke Panel</span>
+            <i class="fa-solid fa-right-to-bracket"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Admin Dashboard Panel Modal -->
+  <div id="admin-panel-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box modal-box-lg">
+      <!-- Panel Header -->
+      <div class="admin-panel-header">
+        <div class="panel-header-left">
+          <span class="status-indicator"></span>
+          <h3 class="panel-title"><i class="fa-solid fa-gauge-high"></i> Panel Admin Arsenio</h3>
+          <span class="badge badge-admin-role">Siswa RPL Admin</span>
+        </div>
+        <div class="panel-header-right">
+          <button type="button" class="btn btn-sm btn-outline btn-logout" id="panel-logout-btn" title="Keluar dari mode admin">
+            <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+          </button>
+          <button class="modal-close-static" id="admin-panel-close-btn" aria-label="Tutup panel admin">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel Navigation Tabs -->
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab-btn active" data-tab="tab-profile" id="tab-btn-profile">
+          <i class="fa-solid fa-id-card"></i>
+          <span>Edit Profil</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-projects" id="tab-btn-projects">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Kelola Proyek</span>
+          <span class="tab-counter" id="tab-projects-count">0</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-skills" id="tab-btn-skills">
+          <i class="fa-solid fa-bolt"></i>
+          <span>Kelola Skills</span>
+          <span class="tab-counter" id="tab-skills-count">0</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-messages" id="tab-btn-messages">
+          <i class="fa-solid fa-inbox"></i>
+          <span>Pesan Masuk</span>
+          <span class="tab-counter alert-counter" id="tab-messages-count">0</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-tab="tab-settings" id="tab-btn-settings">
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </button>
+      </div>
+
+      <!-- Panel Tab Content Area -->
+      <div class="admin-panel-body">
+        <!-- Tab 0: Edit Profil -->
+        <div class="admin-tab-content active" id="tab-profile">
+          <div class="tab-content-header">
+            <div>
+              <h4 class="tab-heading">Edit Profil &amp; Informasi Pribadi</h4>
+              <p class="tab-subtext">Ubah nama, status sekolah, foto avatar, teks perkenalan hero, biodata lengkap, dan tautan sosial media.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" id="profile-reset-btn">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset Profil ke Bawaan</span>
+            </button>
+          </div>
+
+          <form id="profile-edit-form" class="profile-edit-form">
+            <!-- 1. Foto Profil (Avatar) -->
+            <div class="profile-edit-card">
+              <h5 class="profile-section-title"><i class="fa-solid fa-image"></i> Foto Profil (Avatar)</h5>
+              <div class="avatar-edit-layout">
+                <div class="avatar-preview-wrap">
+                  <img src="assets/profile.jpg" alt="Preview Avatar" id="profile-edit-avatar-preview" class="avatar-preview-img" onerror="this.src='assets/project1.jpg'" />
+                  <span class="avatar-preview-badge">Preview</span>
+                </div>
+                <div class="avatar-controls">
+                  <div class="form-group">
+                    <label for="profile-avatar-preset" class="form-label">Pilih Gambar Preset atau Masukkan URL Sendiri</label>
+                    <select id="profile-avatar-preset" class="form-select">
+                      <option value="assets/profile.jpg">Preset 1: Foto Default Arsenio (assets/profile.jpg)</option>
+                      <option value="assets/project1.jpg">Preset 2: Ilustrasi IoT Smart Trash Bin</option>
+                      <option value="assets/project2.jpg">Preset 3: Ilustrasi Smart Door Lock</option>
+                      <option value="assets/project3.jpg">Preset 4: Ilustrasi Website Top Up Game</option>
+                      <option value="assets/project4.jpg">Preset 5: Ilustrasi Portal SchoolHub</option>
+                      <option value="custom">URL Gambar Kustom (Ketik URL di bawah)...</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="custom-avatar-url-group" style="display: none;">
+                    <label for="profile-avatar-url" class="form-label">URL Foto / Avatar Kustom</label>
+                    <input type="text" id="profile-avatar-url" class="form-input" placeholder="https://images.unsplash.com/... atau URL foto" />
+                    <span class="form-hint">Mendukung link gambar langsung (HTTPS) dari web, Unsplash, GitHub Avatar, atau file lokal.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Identitas Utama & Pendidikan -->
+            <div class="profile-edit-card">
+              <h5 class="profile-section-title"><i class="fa-solid fa-user-graduate"></i> Identitas Pokok &amp; Sekolah</h5>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="profile-name-input" class="form-label">Nama Lengkap / Panggilan <span class="required-star">*</span></label>
+                  <input type="text" id="profile-name-input" class="form-input" required />
+                </div>
+                <div class="form-group">
+                  <label for="profile-school-input" class="form-label">Nama Sekolah <span class="required-star">*</span></label>
+                  <input type="text" id="profile-school-input" class="form-input" required />
+                </div>
+                <div class="form-group">
+                  <label for="profile-major-input" class="form-label">Jurusan <span class="required-star">*</span></label>
+                  <input type="text" id="profile-major-input" class="form-input" required />
+                </div>
+                <div class="form-group">
+                  <label for="profile-grade-input" class="form-label">Kelas Saat Ini <span class="required-star">*</span></label>
+                  <input type="text" id="profile-grade-input" class="form-input" required />
+                </div>
+                <div class="form-group">
+                  <label for="profile-tag-input" class="form-label">Teks Tag Hero (Atas Nama)</label>
+                  <input type="text" id="profile-tag-input" class="form-input" placeholder="HELLO, I'M" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-status-avail-input" class="form-label">Status Ketersediaan (Badge Kartu)</label>
+                  <input type="text" id="profile-status-avail-input" class="form-input" placeholder="Open for Projects &amp; PKL" />
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Tampilan Hero & Animasi Ketik -->
+            <div class="profile-edit-card">
+              <h5 class="profile-section-title"><i class="fa-solid fa-terminal"></i> Tampilan Hero &amp; Animasi Ketik</h5>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="profile-headline-prefix-input" class="form-label">Prefix Teks Headline</label>
+                  <input type="text" id="profile-headline-prefix-input" class="form-input" placeholder="RPL Student &amp; " />
+                  <span class="form-hint">Contoh: "RPL Student &amp; "</span>
+                </div>
+                <div class="form-group">
+                  <label for="profile-typing-roles-input" class="form-label">Daftar Kata Teks Berjalan (Pisahkan dengan Koma)</label>
+                  <input type="text" id="profile-typing-roles-input" class="form-input" placeholder="Web Developer, UI/UX Enthusiast, IoT Explorer, Gamer &amp; Swimmer" />
+                  <span class="form-hint">Contoh: Web Developer, UI/UX Enthusiast, IoT Explorer, Gamer &amp; Swimmer</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="profile-hero-desc-input" class="form-label">Deskripsi Ringkas Hero Section</label>
+                <textarea id="profile-hero-desc-input" class="form-textarea" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- 4. Biodata & Cerita (About Me) -->
+            <div class="profile-edit-card">
+              <h5 class="profile-section-title"><i class="fa-solid fa-address-card"></i> Biodata Lengkap &amp; Cerita (About Me)</h5>
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="profile-focus-input" class="form-label">Fokus Utama</label>
+                  <input type="text" id="profile-focus-input" class="form-input" placeholder="Web Development &amp; UI/UX" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-hobbies-input" class="form-label">Hobi</label>
+                  <input type="text" id="profile-hobbies-input" class="form-input" placeholder="Gaming &amp; Swimming" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-location-input" class="form-label">Lokasi</label>
+                  <input type="text" id="profile-location-input" class="form-input" placeholder="Sidoarjo, Jawa Timur, Indonesia" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="profile-story-title-input" class="form-label">Judul Cerita About Me</label>
+                <input type="text" id="profile-story-title-input" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label for="profile-quote-input" class="form-label">Kutipan / Motto Favorit</label>
+                <input type="text" id="profile-quote-input" class="form-input" placeholder="Belajar, membuat, mencoba, dan terus berkembang." />
+              </div>
+              <div class="form-group">
+                <label for="profile-story1-input" class="form-label">Paragraf Cerita 1 (Latar Belakang &amp; Sekolah)</label>
+                <textarea id="profile-story1-input" class="form-textarea" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="profile-story2-input" class="form-label">Paragraf Cerita 2 (Keahlian, Pengalaman, &amp; Waktu Luang)</label>
+                <textarea id="profile-story2-input" class="form-textarea" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- 5. Kontak & Media Sosial -->
+            <div class="profile-edit-card">
+              <h5 class="profile-section-title"><i class="fa-solid fa-share-nodes"></i> Kontak &amp; Tautan Sosial</h5>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="profile-email-input" class="form-label">Email Utama</label>
+                  <input type="email" id="profile-email-input" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-github-input" class="form-label">URL Profil GitHub</label>
+                  <input type="url" id="profile-github-input" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-instagram-input" class="form-label">URL Instagram</label>
+                  <input type="url" id="profile-instagram-input" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label for="profile-ig-handle-input" class="form-label">Username Instagram (Contoh: @arsenio.rpl)</label>
+                  <input type="text" id="profile-ig-handle-input" class="form-input" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="profile-form-footer">
+              <button type="submit" class="btn btn-primary" id="save-profile-btn">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Simpan Perubahan Profil</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tab 1: Proyek -->
+        <div class="admin-tab-content" id="tab-projects">
+          <div class="tab-content-header">
+            <div>
+              <h4 class="tab-heading">Daftar Proyek Portofolio</h4>
+              <p class="tab-subtext">Tambah project baru, ubah deskripsi, tech stack, atau hapus project yang tidak diperlukan.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-primary" id="panel-add-project-btn">
+              <i class="fa-solid fa-circle-plus"></i>
+              <span>Tambah Proyek Baru</span>
+            </button>
+          </div>
+
+          <div class="admin-table-container">
+            <div id="admin-projects-list" class="admin-items-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Skills -->
+        <div class="admin-tab-content" id="tab-skills">
+          <div class="tab-content-header">
+            <div>
+              <h4 class="tab-heading">Daftar Keahlian (Skills)</h4>
+              <p class="tab-subtext">Atur skill pemrograman, level keahlian (Beginner / Intermediate / Advanced), dan deskripsinya.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-primary" id="panel-add-skill-btn">
+              <i class="fa-solid fa-circle-plus"></i>
+              <span>Tambah Skill Baru</span>
+            </button>
+          </div>
+
+          <div class="admin-table-container">
+            <div id="admin-skills-list" class="admin-items-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Pesan Masuk -->
+        <div class="admin-tab-content" id="tab-messages">
+          <div class="tab-content-header">
+            <div>
+              <h4 class="tab-heading">Kotak Masuk Form Kontak</h4>
+              <p class="tab-subtext">Pesan yang dikirimkan oleh pengunjung melalui formulir "Let's Work Together".</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline text-danger" id="clear-all-messages-btn">
+              <i class="fa-solid fa-trash-can"></i>
+              <span>Hapus Semua Pesan</span>
+            </button>
+          </div>
+
+          <div id="admin-messages-list" class="admin-messages-list">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Tab 4: Pengaturan -->
+        <div class="admin-tab-content" id="tab-settings">
+          <div class="tab-content-header">
+            <div>
+              <h4 class="tab-heading">Pengaturan Akun &amp; Data</h4>
+              <p class="tab-subtext">Kelola keamanan password autentikasi atau pulihkan data portofolio ke default.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <!-- Ganti Password -->
+            <div class="settings-card">
+              <h5 class="settings-card-title"><i class="fa-solid fa-key"></i> Ganti Password Admin</h5>
+              <form id="change-password-form" class="settings-form">
+                <div class="form-group">
+                  <label for="old-pass" class="form-label">Password Saat Ini</label>
+                  <input type="password" id="old-pass" class="form-input" required />
+                </div>
+                <div class="form-group">
+                  <label for="new-pass" class="form-label">Password Baru</label>
+                  <input type="password" id="new-pass" class="form-input" placeholder="Minimal 6 karakter" required />
+                </div>
+                <div class="form-group">
+                  <label for="confirm-pass" class="form-label">Konfirmasi Password Baru</label>
+                  <input type="password" id="confirm-pass" class="form-input" required />
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Simpan Password Baru</button>
+              </form>
+            </div>
+
+            <!-- Reset Data Default -->
+            <div class="settings-card">
+              <h5 class="settings-card-title"><i class="fa-solid fa-rotate-left"></i> Pulihkan Data Bawaan</h5>
+              <p class="settings-card-desc">
+                Jika Anda ingin mengembalikan seluruh proyek dan skill ke susunan awal sekolah (4 Proyek Default &amp; 8 Skills), tekan tombol di bawah.
+              </p>
+              <button type="button" class="btn btn-sm btn-outline text-warning" id="reset-default-data-btn">
+                <i class="fa-solid fa-arrows-rotate"></i> Reset ke Data Bawaan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Form Tambah / Edit Proyek Modal -->
+  <div id="project-form-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box modal-box-md">
+      <button class="modal-close" id="project-form-close-btn" aria-label="Tutup modal form proyek">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-form-header">
+        <h3 class="modal-form-title" id="project-form-modal-title">Tambah Proyek Baru</h3>
+        <p class="modal-form-subtitle">Lengkapi detail project portofolio Anda.</p>
+      </div>
+
+      <form id="project-crud-form" class="modal-body-form" novalidate>
+        <input type="hidden" id="project-form-id" value="" />
+
+        <div class="form-group">
+          <label for="project-form-title" class="form-label">Judul Proyek <span class="required-star">*</span></label>
+          <input type="text" id="project-form-title" class="form-input" placeholder="Contoh: Smart Door Lock" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="project-form-category" class="form-label">Kategori <span class="required-star">*</span></label>
+            <input type="text" id="project-form-category" class="form-input" placeholder="Contoh: IoT &amp; Hardware, Web App" required />
+          </div>
+
+          <div class="form-group">
+            <label for="project-form-duration" class="form-label">Timeline / Periode</label>
+            <input type="text" id="project-form-duration" class="form-input" placeholder="Contoh: Tugas RPL 2026" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="project-form-img" class="form-label">Pilihan Gambar / Banner Proyek</label>
+          <div class="img-picker-row">
+            <select id="project-form-img-preset" class="form-input">
+              <option value="assets/project1.jpg">Project 1 (assets/project1.jpg - Smart Trash Bin)</option>
+              <option value="assets/project2.jpg">Project 2 (assets/project2.jpg - Smart Door Lock)</option>
+              <option value="assets/project3.jpg">Project 3 (assets/project3.jpg - Website Top Up)</option>
+              <option value="assets/project4.jpg">Project 4 (assets/project4.jpg - SchoolHub)</option>
+              <option value="custom">URL Gambar Kustom...</option>
+            </select>
+          </div>
+          <input type="text" id="project-form-img-custom" class="form-input" style="display: none; margin-top: 0.5rem;" placeholder="https://example.com/gambar-project.jpg" />
+        </div>
+
+        <div class="form-group">
+          <label for="project-form-desc" class="form-label">Deskripsi Proyek <span class="required-star">*</span></label>
+          <textarea id="project-form-desc" class="form-textarea" rows="3" placeholder="Jelaskan fungsi, cara kerja, dan tujuan project ini..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="project-form-tags" class="form-label">Tech Stack (Pisahkan dengan koma) <span class="required-star">*</span></label>
+          <input type="text" id="project-form-tags" class="form-input" placeholder="Contoh: ESP32, Sensor RFID, PHP, MySQL" required />
+        </div>
+
+        <div class="form-group">
+          <label for="project-form-role" class="form-label">Peran Arsenio</label>
+          <input type="text" id="project-form-role" class="form-input" placeholder="Contoh: Frontend UI/UX &amp; Arduino sketch programming" />
+        </div>
+
+        <div class="form-group">
+          <label for="project-form-github" class="form-label">Link Repository GitHub</label>
+          <input type="url" id="project-form-github" class="form-input" placeholder="https://github.com/arsenio-rpl/project-name" />
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="project-form-cancel-btn">Batal</button>
+          <button type="submit" class="btn btn-primary" id="project-form-save-btn">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Simpan Proyek</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Form Tambah / Edit Skill Modal -->
+  <div id="skill-form-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box modal-box-sm">
+      <button class="modal-close" id="skill-form-close-btn" aria-label="Tutup modal form skill">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-form-header">
+        <h3 class="modal-form-title" id="skill-form-modal-title">Tambah Skill Baru</h3>
+        <p class="modal-form-subtitle">Tambahkan keahlian teknis pemrograman ke portofolio.</p>
+      </div>
+
+      <form id="skill-crud-form" class="modal-body-form" novalidate>
+        <input type="hidden" id="skill-form-id" value="" />
+
+        <div class="form-group">
+          <label for="skill-form-name" class="form-label">Nama Skill <span class="required-star">*</span></label>
+          <input type="text" id="skill-form-name" class="form-input" placeholder="Contoh: React, Python, C++, Figma" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="skill-form-level" class="form-label">Tingkat Penguasaan</label>
+            <select id="skill-form-level" class="form-input">
+              <option value="Beginner">Beginner (Pemula)</option>
+              <option value="Intermediate" selected>Intermediate (Menengah)</option>
+              <option value="Advanced">Advanced (Mahir)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="skill-form-percent" class="form-label">Persentase Bar (%)</label>
+            <input type="number" id="skill-form-percent" class="form-input" min="10" max="100" value="70" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="skill-form-icon-preset" class="form-label">Ikon Teknologi</label>
+          <select id="skill-form-icon-preset" class="form-input">
+            <option value="fa-brands fa-html5|html-icon">HTML5</option>
+            <option value="fa-brands fa-css3-alt|css-icon">CSS3</option>
+            <option value="fa-brands fa-js|js-icon">JavaScript</option>
+            <option value="fa-brands fa-php|php-icon">PHP</option>
+            <option value="fa-solid fa-database|mysql-icon">MySQL Database</option>
+            <option value="fa-brands fa-git-alt|git-icon">Git Version Control</option>
+            <option value="fa-solid fa-palette|uiux-icon">UI/UX Design</option>
+            <option value="fa-solid fa-mobile-screen-button|rwd-icon">Responsive Web</option>
+            <option value="fa-brands fa-react|react-icon">React.js</option>
+            <option value="fa-brands fa-node-js|node-icon">Node.js</option>
+            <option value="fa-brands fa-python|python-icon">Python</option>
+            <option value="fa-solid fa-microchip|iot-icon">IoT / Microchip</option>
+            <option value="fa-solid fa-code|code-icon">Programming General</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="skill-form-desc" class="form-label">Deskripsi Ringkas <span class="required-star">*</span></label>
+          <textarea id="skill-form-desc" class="form-textarea" rows="2" placeholder="Kemampuan atau fokus Anda dalam skill ini..." required></textarea>
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="skill-form-cancel-btn">Batal</button>
+          <button type="submit" class="btn btn-primary" id="skill-form-save-btn">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Simpan Skill</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Admin Button -->
+  <button id="admin-floating-btn" class="admin-floating-btn" type="button" title="Panel Admin Arsenio">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span class="floating-text">Admin</span>
+  </button>
+
+  <!-- Vanilla JavaScript -->
+  <script src="script.js" defer></script>
+</body>
+</html>
